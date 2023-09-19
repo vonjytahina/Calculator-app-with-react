@@ -1,13 +1,251 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@import url('https://fonts.googleapis.com/css2?family=Barlow:wght@600&family=League+Spartan:wght@700&display=swap');
+
+:root {
+  --background: hsl(223, 31%, 20%);
+  --main-background: hsl(222, 26%, 31%);
+  --screen-background: hsl(224, 36%, 15%);
+
+  --edit-key-background: hsl(225, 21%, 49%);
+  --edit-key-shadow:  hsl(224, 28%, 35%);
+  --edit-key-text: hsl(0, 0%, 100%);
+  --equal-key-background: hsl(6, 63%, 50%);
+  --equal-key-shadow:  hsl(6, 70%, 34%);
+  --equal-key-text: hsl(0, 0%, 100%);
+  --numeric-key-background: hsl(30, 25%, 89%);
+  --numeric-key-shadow:  hsl(28, 16%, 65%);
+
+  --dark-text: hsl(221, 14%, 31%);
+  --white-text: hsl(0, 0%, 100%);
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'League Spartan', sans-serif;
+  font-size: 32px;
 }
+
+.container {
+  width: 1440px;
+  margin: 0 auto;
+  background: var(--main-background);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: auto
+}
+
+.app {
+  width: 540px;
+  margin: 50px auto;
+}
+
+.app .top {
+  display: flex;
+  align-items: last baseline;
+  justify-content: space-between;
+}
+
+.app .top .left{
+  color: var(--white-text);
+}
+
+.app .top .right {
+  display: flex;
+  align-items: flex-end;
+  gap: 25px;
+}
+
+.app .top .right .theme-text{
+  color: var(--white-text);
+  text-transform: uppercase;
+  font-size: 16px;
+  margin-bottom: 5px;
+}
+
+.app .top .right .theme-choice {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 70px;
+  gap: 5px;
+}
+
+
+.app .top .right .theme-choice label{
+  display: flex;
+  justify-content: space-between;
+  width: 80%; 
+}
+
+.app .top .right .theme-choice label span{
+  color: var(--white-text);
+  font-size: 16px;
+}
+
+.app .top .right .theme-choice input{
+  display: block;  
+  appearance: none;
+  height: 25px;
+  width: 100%;
+  background: var(--background);
+  border-radius: 20px;
+  padding: 5px;
+}
+
+.app .top .right .theme-choice input::-webkit-slider-thumb {
+  appearance: none;
+  height: 19px;
+  width: 19px;
+  border-radius: 50%;
+  background: var(--equal-key-background);
+  cursor: pointer;
+  transition: all .3s ease-in-out;
+}
+
+.app .top .right .theme-choice input::-webkit-slider-thumb:hover {
+  filter: brightness(120%);
+}
+
+.app .middle {
+  margin: 30px 0px 25px;
+}
+
+.app .middle #screen {
+  display: block;
+  width: 100%;
+  height: 130px;
+  border-radius: 10px;
+  background: var(--screen-background);
+  border: none;
+  outline: none;
+  text-align: right;
+  color: var(--white-text);
+  font-size: 60px;
+  padding: 35px;  
+}
+
+.app .bottom {
+  width: 100%;
+  height: 480px;
+  background: var(--background);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding: 25px;
+  gap: 25px;
+}
+
+.app .bottom div{
+  width: 100px;
+  height: 65px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all .3s ease-in-out;  
+}
+
+.app .bottom div:hover{
+  filter: brightness(120%);
+}
+
+.app .bottom div.numeric, .app .bottom div.operator {
+  background: var(--numeric-key-background);
+  box-shadow: 0px -5px 0px 0px  var(--numeric-key-shadow) inset;
+  color: var(--dark-text);
+  font-size: 40px;
+}
+
+.app .bottom div.edit {
+  background: var(--edit-key-background);
+  box-shadow: 0px -5px 0px 0px  var(--edit-key-shadow) inset;
+  color: var(--edit-key-text);
+  text-transform: uppercase;
+}
+
+.app .bottom div.equal {
+  background: var(--equal-key-background);
+  box-shadow: 0px -5px 0px 0px  var(--equal-key-shadow) inset;
+  width: 225px;
+  color: var(--equal-key-text);
+}
+
+.app .bottom div#reset {
+  width: 225px;
+}
+
+
+.App .attribution {
+  margin: 15px auto 5px;
+  text-align: center;
+  font-size: 12px;
+}
+
+.App .attribution a {
+  font-size: 11px;
+}
+
+/* responsive */
+@media screen and (max-width: 375px) {
+  .container {
+    width: 375px;
+    height: auto;
+    border: none;
+    overflow: hidden;
+  }
+
+  .app {
+    margin: 30px auto;
+    height: auto;
+    width: 325px;
+  }
+
+  .app .top {
+    align-items: flex-end;
+  }
+
+  .app .top .right .theme-text{
+    font-size: 14px;
+  }
+
+  .app .top .right .theme-choice label span{
+    font-size: 14px;
+  }
+
+  .app .middle #screen {
+    height: 90px;
+    font-size: 40px;
+    padding: 25px;  
+  }
+
+  .app .bottom {
+    gap: 10px 1px;
+    padding: 20px;
+    height: 420px;
+  }
+
+  .app .bottom div{
+    width: 60px; 
+  }
+
+  .app .bottom div.numeric, .app .bottom div.operator {
+    font-size: 30px;
+  }
+
+  .app .bottom div.edit {
+    font-size: 20px;
+  }
+
+  .app .bottom div.equal {
+    width: 135px;
+  }
+  
+  .app .bottom div#reset {
+    width: 135px;
+  }
+} 
